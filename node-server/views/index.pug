@@ -1,17 +1,17 @@
 html
   head
     title Bomodoa Coding Exercise
-    link(href='./styles.css', rel='stylesheet')
+    link(href='styles.css', rel='stylesheet')
     script.
       const toggleVisibility = () => {
-        const paras = document.querySelectorAll('p');
-        console.log(paras[0].style.display);
-        paras[0].style.display === 'none' ? paras.forEach(para => para.style.display = 'block') : paras.forEach(para => para.style.display = 'none')
+        const stats = document.querySelector('div');
+        stats.style.display === 'block' ? stats.style.display = 'none' : stats.style.display = 'block';
       };
   body
     h1 Flask API Stats
-    p The Flask API has been running for #{process_elapsed_seconds} seconds since the start of this process
-    p The Flask API's status endpoint has been called #{process_endpoint_times_requested} times since the start of this process
-    p The Flask API was first started at #{server_first_start}
-    p The Flask API's status endpoint has been called #{server_endpoint_times_requested} times ever
+    div.stats
+      p The Flask API has been running for #{process_elapsed_seconds} seconds since the start of this process
+      p The Flask API's status endpoint has been called #{process_endpoint_times_requested} times since the start of this process
+      p The Flask API was first started at #{server_first_start}
+      p The Flask API's status endpoint has been called #{server_endpoint_times_requested} times ever
     button(onClick='toggleVisibility()') Click to toggle the view
