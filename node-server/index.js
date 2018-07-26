@@ -9,7 +9,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get('/', async (req, res) => {
   const url = 'http://127.0.0.1:5000/status';
   const {data} = await axios.get(url);
-  console.log(data);
   res.render('index', data);
 });
 
