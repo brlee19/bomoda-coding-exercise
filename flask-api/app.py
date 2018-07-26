@@ -8,11 +8,10 @@ app = Flask(__name__)
 # get data from data.json if the server has been run before
 # or initialize it if this is the first time the server is being run
 try:
-    persisted_data = open('data.json', 'r')
-    server_data = json.load(persisted_data)
-    server_first_start = server_data['server_first_start']
-    server_endpoint_times_requested = server_data['server_endpoint_times_requested']
-    persisted_data.close()
+    with open('data.json', 'r') as persisted_file:
+        server_data = json.load(persisted_file)
+        server_first_start = server_data['server_first_start']
+        server_endpoint_times_requested = server_data['server_endpoint_times_requested']
 except FileNotFoundError:
     server_first_start = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     server_endpoint_times_requested = 0
@@ -21,7 +20,7 @@ except FileNotFoundError:
 times_run = 0
 start_time = time()
 app_data = {
-    'process_elapsed_time': 0,
+    'process_elapsed_seconds': 0,
     'process_endpoint_times_requested': 0,
     'server_first_start': server_first_start,
     'server_endpoint_times_requested': server_endpoint_times_requested,
@@ -33,7 +32,7 @@ def index():
     # update app data
     global app_data, start_time, server_first_start
     app_data['process_endpoint_times_requested'] += 1
-    app_data['process_elapsed_time'] = time() - start_time
+    app_data['process_elapsed_seconds'] = int(time() - start_time)
     app_data['server_endpoint_times_requested'] += 1
 
     # update data.json
