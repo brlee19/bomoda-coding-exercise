@@ -11,4 +11,4 @@ Coding exercise
 
 ## Note
 
-I used a JSON file to persist data. I did not include my JSON file in this repository. When you start the Flask server for a first time, the app will create that file.
+I used a JSON file to persist data. I did not include my JSON file in this repository. When you start the Flask server for the first time, the app will create that file.
